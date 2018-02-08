@@ -3,9 +3,8 @@ node{
 		git 'https://github.com/diaconovi/GitHelloWorld.git'
 		}	
 		stage('SonarQubeScan'){
-			def scannerHone=tool 'SonarQube Scanner'
 			WithSonarQubeEnv('localhost:9000'){
-				sh './opt/sonar-scanner/bin/sonar-scanner'
+				sh mvn sonar:sonar
 			}
 		}
 
