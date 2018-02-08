@@ -1,15 +1,16 @@
 pipeline {
-    agent {
-        docker { image 'maven:latest' 
-                }    
-            }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
-    }
+	node{
+		stage('SCM'){
+		git 'https://github.com/diaconovi/GitHelloWorld.git'
+		}	
+		stage('SonarQubeScan'){
+			def scannerHone=tool 'SonarQube Scanner'
+			WithSonarQubeEnv('localhost:9000'){
+				sh './opt/sonar-scanner/bin/sonar-scanner'
+			}
+		}
+	}
+
     post {
         always {
             echo 'This will always run'
