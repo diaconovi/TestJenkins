@@ -1,12 +1,18 @@
-node{
-		stage('SCM'){
-		git 'https://github.com/diaconovi/GitHelloWorld.git'
-		}	
-		stage('SonarQubeScan'){
-			WithSonarQubeEnv('localhost:9000'){
-				sh mvn sonar:sonar
+pipeline{
+	agent any
+	stages{
+		stage('GitHub'){
+			steps{
+				git https://github.com/diaconovi/GitHelloWorld.git
 			}
 		}
+		stage('Sonar Scanner'){
+			steps{
+				sh /opt/sonar-scanner/bin/sonar-scanner
+			}
+		}
+	}
+	
 
     post {
         always {
