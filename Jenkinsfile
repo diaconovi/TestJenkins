@@ -1,5 +1,4 @@
-pipeline {
-	node{
+node{
 		stage('SCM'){
 		git 'https://github.com/diaconovi/GitHelloWorld.git'
 		}	
@@ -9,7 +8,6 @@ pipeline {
 				sh './opt/sonar-scanner/bin/sonar-scanner'
 			}
 		}
-	}
 
     post {
         always {
