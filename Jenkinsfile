@@ -3,7 +3,7 @@ pipeline{
 	stages{
 		stage('GitHub'){
 			steps{
-				git https://github.com/diaconovi/GitHelloWorld.git
+				git 'https://github.com/diaconovi/GitHelloWorld.git'
 			}
 		}
 		stage('Sonar Scanner'){
