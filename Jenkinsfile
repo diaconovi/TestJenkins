@@ -8,7 +8,7 @@ pipeline{
 		}
 		stage('Sonar Scanner'){
 			steps{
-				sh '|/opt/sonar-scanner/bin/sonar-scanner'
+				sh '/opt/sonar-scanner/bin/sonar-scanner'
 			}
 		}
 	}
