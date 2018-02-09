@@ -13,10 +13,16 @@ pipeline{
 				}
 				withSonarQubeEnv('SonarQube Server'){
 					sh "${scannerHome}/bin/sonar-scanner"
+					def qg = waitForQualityGate()
+							if (qg.status != 'OK') {
+								error "Pipeline Aborted failure: ${qg.status}"
+							}else {
+								echo "Quality gate says: OK"
+							}
 				}
 			}
 		}
-		stage('Quality Gate'){
+		/*stage('Quality Gate'){
 			steps{
 				timeout(time: 2, unit: 'MINUTES') {
 					script{
@@ -31,7 +37,7 @@ pipeline{
 					}
 				}
 			}
-		}	
+		}	*/
 	}
 	
 
