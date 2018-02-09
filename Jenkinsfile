@@ -17,15 +17,17 @@ pipeline{
 			}
 		}
 		stage('Quality Gate'){
-			timeout(time: 2, unit: 'MINUTES') {
-				script{
-				def qg = waitForQualityGate()
-				if (qg.status != 'OK') {
-					error "Pipeline Aborted failure: ${qg.status}"
+			steps{
+				timeout(time: 2, unit: 'MINUTES') {
+					script{
+					def qg = waitForQualityGate()
+					if (qg.status != 'OK') {
+						error "Pipeline Aborted failure: ${qg.status}"
+						}
 					}
 				}
 			}
-		}
+		}	
 	}
 	
 
