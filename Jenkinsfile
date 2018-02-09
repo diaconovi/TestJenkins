@@ -8,7 +8,7 @@ pipeline{
 		}
 		stage('SonarScanner'){
 			steps{
-				scrip{
+				script{
 				def scannerHome = tool 'SonarScanner'
 				}
 				withSonarQubeEnv('SonarQube Server'){
