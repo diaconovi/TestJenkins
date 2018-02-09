@@ -16,8 +16,19 @@ pipeline{
 				}
 			}
 		}
+		stage('Quality Gate'){
+			timeout(time: 2, unit: 'MINUTES'){
+				script{
+				def qg = waitForQualityGate()
+				if qg =! 'OK'{
+					error "Pipeline Aborted failure: ${qg.status}"
+					}
+				}
+			}
+		}
 	}
 	
+
 	post {
 		always {
 			echo 'This will always run'
