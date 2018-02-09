@@ -1,9 +1,7 @@
 pipeline{
 	agent any
-	environment{
-		withSonarQubeEnv ('SonarQube Server'){
+	withSonarQubeEnv ('SonarQube Server'){
 			qg = waitForQualityGate()
-		}
 	}
 	stages{
 		stage('GitHub'){
