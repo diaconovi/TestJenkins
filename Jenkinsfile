@@ -20,11 +20,12 @@ pipeline{
 			steps{
 				timeout(time: 2, unit: 'MINUTES') {
 					script{
+					whitSonarQubeEnv('SonarQubeServer'){
 					def qg = waitForQualityGate()
 					if (qg.status != 'OK') {
 						error "Pipeline Aborted failure: ${qg.status}"
 						}
-					}
+					}}
 				}
 			}
 		}	
