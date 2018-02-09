@@ -10,7 +10,7 @@ pipeline{
 			steps{
 				script{
 				scannerHome = tool 'SonarScanner'
-				}
+				
 				withSonarQubeEnv('SonarQube Server'){
 					sh "${scannerHome}/bin/sonar-scanner"
 					def qg = waitForQualityGate()
@@ -19,7 +19,7 @@ pipeline{
 							}else {
 								echo "Quality gate says: OK"
 							}
-				}
+				}}
 			}
 		}
 		/*stage('Quality Gate'){
