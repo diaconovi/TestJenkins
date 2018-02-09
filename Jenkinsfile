@@ -12,8 +12,6 @@ pipeline{
 				}
 		}
 	}
-		
-	}
 
     post {
         always {
