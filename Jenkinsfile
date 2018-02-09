@@ -1,5 +1,8 @@
 pipeline{
 	agent any
+	environment{
+		def qg = waitForQualityGate()
+	}
 	stages{
 		stage('GitHub'){
 			steps{
@@ -21,7 +24,6 @@ pipeline{
 				timeout(time: 2, unit: 'MINUTES') {
 					script{
 						whitSonarQubeEnv('SonarQube Server'){
-							def qg = waitForQualityGate()
 							if (qg.status != 'OK') {
 								error "Pipeline Aborted failure: ${qg.status}"
 							}else {
