@@ -2,7 +2,7 @@ pipeline{
 	agent any
 	environment{
 		withSonarQubeEnv ('SonarQube Server'){
-			def qg = waitForQualityGate()
+			qg = waitForQualityGate()
 		}
 	}
 	stages{
