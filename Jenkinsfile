@@ -12,8 +12,8 @@ pipeline{
 				scannerHome = tool 'SonarScanner'
 				
 				withSonarQubeEnv('SonarQube Server'){
-					sh "${scannerHome}/bin/sonar-scanner"
 					def qg = waitForQualityGate()
+					sh "${scannerHome}/bin/sonar-scanner"
 							if (qg.status != 'OK') {
 								error "Pipeline Aborted failure: ${qg.status}"
 							}else {
