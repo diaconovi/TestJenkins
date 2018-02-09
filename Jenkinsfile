@@ -25,7 +25,7 @@ pipeline{
 							if (qg.status != 'OK') {
 								error "Pipeline Aborted failure: ${qg.status}"
 							}else {
-								echo 'Quality gate says: OK'
+								echo "Quality gate says: OK"
 							}
 							
 						}
