@@ -18,7 +18,7 @@ pipeline{
 			}
 		}
 		
-		/*stage('SonarQube Quality Gate'){
+		stage('SonarQube Quality Gate'){
 			steps{
 				timeout(time: 2, unit: 'MINUTES'){
 					script{
@@ -33,7 +33,7 @@ pipeline{
 					}
 				}
 			}
-		}*/
+		}
 	}
 	post {
 		always {
