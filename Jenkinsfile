@@ -10,7 +10,7 @@ pipeline{
 		stage('SonarQube Scan'){
 			steps{
 				script{
-					scannerHome = tool 'SonarScaner';
+					scannerHome = tool 'SonarScaner'
 				}
 				withSonarQubeEnv('SonarQube Server'){
 					sh "${scannerHome}/bin/sonar-scanner"		
@@ -23,7 +23,7 @@ pipeline{
 				timeout(time: 2, unit: 'MINUTES'){
 					script{
 						withSonarQubeEnv('SonarQube Server'){
-				    		def qg = waitForQualityGate(); // Reuse taskId previously collected by withSonarQubeEnv
+				    		def qg = waitForQualityGate()
     						if (qg.status != 'OK') {
       							error "Pipeline aborted due to quality gate failure: ${qg.status}"
     						}else{
