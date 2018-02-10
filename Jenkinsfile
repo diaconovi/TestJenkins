@@ -2,27 +2,33 @@ pipeline{
 	agent any
 	stages{
 		stage('GitHub'){
-			git 'https://github.com/diaconovi/GitHelloWorld.git'
+			steps{
+				git 'https://github.com/diaconovi/GitHelloWorld.git'
+			}
 		}
 		
 		stage('SonarQube Scan'){
-			sonarHome = tool 'SonarScaner'
-			script{
-				withSonarQubeEnv{
-					sh "${scannerHome}/bin/sonar-scanner"
+			steps{
+				sonarHome = tool 'SonarScaner'
+				script{
+					withSonarQubeEnv{
+						sh "${scannerHome}/bin/sonar-scanner"
+					}
 				}
 			}
 		}
 		
 		stage('SonarQube Quality Gate'){
-			timeout(time: 2, unit: 'MINUTES'){
-				script{
-				    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    				if (qg.status != 'OK') {
-      					error "Pipeline aborted due to quality gate failure: ${qg.status}"
-    				}else{
-    					echo "Quality Gate: ${qg.status}"
-    				}
+			steps{
+				timeout(time: 2, unit: 'MINUTES'){
+					script{
+				    	def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    					if (qg.status != 'OK') {
+      						error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    					}else{
+    						echo "Quality Gate: ${qg.status}"
+    					}
+					}
 				}
 			}
 		}
