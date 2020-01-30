@@ -1,6 +1,7 @@
 require "selenium-webdriver"
 require "rspec"
 
+
 # TEST: Sign up for blog
 describe "Blog application" do
   describe "signup to the blog application" do
