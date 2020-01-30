@@ -1,3 +1,4 @@
+
 node {
   stage('SCM') {
     git 'https://github.com/diaconovi/GitHelloWorld.git'
